@@ -8,16 +8,17 @@ public class EmployeeWageCompute {
 	public static final int fullTimeHrs = 8;
 	public static final int wagePerHour = 20;
 	public static void main(String[] args) {
-		double empCheck= Math.floor(Math.random()*10 %2 );
-		int dailyWage = 0,hours=0;
-		if(empCheck == fullTime) {
-			hours = fullTimeHrs;
+		double empCheck = Math.floor(Math.random()*10)%3;
+		int hours=0;
+		switch((int)empCheck) {
+		case fullTime: hours = fullTimeHrs;
+		break;
+		
+		case partTime: hours = fullTimeHrs/2;
+		break;
+		
+		case absent: hours = 0;
 		}
-		else if(empCheck==partTime){
-			hours= fullTimeHrs/2;
-		}
-		else
-			hours=0;
 		System.out.println("Daily Wage = "+(hours*wagePerHour));
 	}
 

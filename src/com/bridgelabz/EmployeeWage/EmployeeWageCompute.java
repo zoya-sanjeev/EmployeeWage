@@ -1,17 +1,16 @@
 package com.bridgelabz.EmployeeWage;
 
 public class EmployeeWageCompute {
-
+	public static final int employeePresent = 1;
+	public static final int fullTime = 8;
+	public static final int wagePerHour = 20;
 	public static void main(String[] args) {
-		int IS_FULL_TIME=1;
 		double empCheck= Math.floor(Math.random()*10 %2 );
-		if(empCheck==IS_FULL_TIME) {
-			System.out.println("Employee is present");
+		int dailyWage = 0,hours=0;
+		if(empCheck == employeePresent) {
+			hours = fullTime;
 		}
-		else {
-			System.out.println("Employee is absent");
-		}
-
+		System.out.println("Daily Wage = "+(hours*wagePerHour));
 	}
 
 }

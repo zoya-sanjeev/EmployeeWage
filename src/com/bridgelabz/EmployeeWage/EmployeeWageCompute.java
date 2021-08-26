@@ -2,32 +2,37 @@ package com.bridgelabz.EmployeeWage;
 
 public class EmployeeWageCompute {
 	
-	public static final int absent = 0;
-	public static final int fullTime = 2;
-	public static final int partTime = 1;
-	public static final int fullTimeHrs = 8;
-	public static final int wagePerHour = 20;
-	public static void main(String[] args) {
-		int totalHrs = 0,i=0;
-		int noOfDays = 20, maxHrs = 100;		
-		while(totalHrs < 100 && i < noOfDays) {
+	public static final int ABSENT = 0;
+	public static final int FULLTIME = 2;
+	public static final int PARTTIME = 1;
+	public static final int FULL_TIME_HOURS = 8;
+	
+	public static void wageCompute(int wagePerHour, int noOfDays, int maxHours) {
+		
+		int day=0, totalHours=0;
+		while(totalHours < 100 && day < noOfDays) {
 			int hours=0;
 			double empCheck = Math.floor(Math.random()*10)%3;
 			switch((int)empCheck) {
-			case fullTime: hours = fullTimeHrs;
+			case FULLTIME: hours = FULL_TIME_HOURS;
 			break;
 			
-			case partTime: hours = fullTimeHrs/2;
+			case PARTTIME: hours = FULL_TIME_HOURS/2;
 			break;
 			
-			case absent: hours = 0;
+			case ABSENT: hours = 0;
 			}
-			totalHrs += hours;
-			i++;
-			System.out.println("Day "+i+": "+hours+" hours");
+			totalHours += hours;
+			day++;
+			System.out.println("Day "+day+": "+hours+" hours");
 		}
-		totalHrs = totalHrs>100 ? 100 : totalHrs;
-		System.out.println(i+" "+totalHrs+" Monthly Wage = "+(totalHrs*wagePerHour));
+		totalHours = totalHours>100 ? 100 : totalHours;
+		System.out.println(day+" "+totalHours+" Monthly Wage = "+(totalHours*wagePerHour));
+		
+	}
+	public static void main(String[] args) {
+		
+		wageCompute(200, 10, 20);
 	
 	}
 

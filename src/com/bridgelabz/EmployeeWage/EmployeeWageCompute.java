@@ -7,7 +7,7 @@ public class EmployeeWageCompute {
 	public static final int PARTTIME = 1;
 	public static final int FULL_TIME_HOURS = 8;
 	
-	public static void wageCompute(int wagePerHour, int noOfDays, int maxHours) {
+	public static void companyWageCompute(String companyName,int wagePerHour, int noOfDays, int maxHours) {
 		
 		int day=0, totalHours=0;
 		while(totalHours < 100 && day < noOfDays) {
@@ -27,12 +27,13 @@ public class EmployeeWageCompute {
 			System.out.println("Day "+day+": "+hours+" hours");
 		}
 		totalHours = totalHours>100 ? 100 : totalHours;
-		System.out.println(day+" "+totalHours+" Monthly Wage = "+(totalHours*wagePerHour));
+		System.out.println(companyName+":Days:"+day+" Total Hours:"+totalHours+" Monthly Wage = "+(totalHours*wagePerHour));
 		
 	}
 	public static void main(String[] args) {
 		
-		wageCompute(200, 10, 20);
+		companyWageCompute("Bridgelabz",90, 10, 20);
+		companyWageCompute("Perfios",200, 10, 15);
 	
 	}
 

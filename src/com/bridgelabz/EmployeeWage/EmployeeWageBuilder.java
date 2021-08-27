@@ -1,6 +1,6 @@
 package com.bridgelabz.EmployeeWage;
 
-public class EmployeeWageCompute {
+public class EmployeeWageBuilder {
 	
 	
 	public static final int FULLTIME = 2;
@@ -10,7 +10,7 @@ public class EmployeeWageCompute {
 	private int numOfCompany=0;
 	private CompanyEmpWage[] companyEmpWageArray;
 	
-	public EmployeeWageCompute() {
+	public EmployeeWageBuilder() {
 		companyEmpWageArray=new CompanyEmpWage[5];
 	}
 	
@@ -54,8 +54,8 @@ public class EmployeeWageCompute {
 
 	public static void main(String[] args) {
 		
-		EmployeeWageCompute empWageBuilder=new EmployeeWageCompute();
-		empWageBuilder.addCompanyEmpWage("DMart",20, 2,10);
+		EmployeeWageBuilder empWageBuilder=new EmployeeWageBuilder();
+		empWageBuilder.addCompanyEmpWage("DMart",20, 6,10);
 		empWageBuilder.addCompanyEmpWage("Reliance",10, 5,20);
 		empWageBuilder.empWageCompute();
 	

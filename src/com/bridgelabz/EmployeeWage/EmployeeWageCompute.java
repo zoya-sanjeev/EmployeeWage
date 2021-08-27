@@ -2,28 +2,35 @@ package com.bridgelabz.EmployeeWage;
 
 public class EmployeeWageCompute {
 	
+	
 	public static final int FULLTIME = 2;
 	public static final int PARTTIME = 1;
 	public static final int FULL_TIME_HOURS = 8;
 	
-	private final String companyName;
-	private final int wagePerHour;
-	private final int noOfDays;
-	private final int maxHoursPerMonth;
-	private int totalEmpWage;
+	private int numOfCompany=0;
+	private CompanyEmpWage[] companyEmpWageArray;
 	
-	public EmployeeWageCompute(String companyName,int wagePerHour, int noOfDays, int maxHoursPerMonth) {
-		this.companyName=companyName;
-		this.wagePerHour=wagePerHour;
-		this.noOfDays=noOfDays;
-		this.maxHoursPerMonth=maxHoursPerMonth;
-		
+	public EmployeeWageCompute() {
+		companyEmpWageArray=new CompanyEmpWage[5];
 	}
 	
-	public void empWageCompute() {
+	private void addCompanyEmpWage(String companyName,int wagePerHour, int noOfDays, int maxHoursPerMonth) {
+		
+		companyEmpWageArray[numOfCompany]=new CompanyEmpWage(companyName, wagePerHour, noOfDays, maxHoursPerMonth);
+		numOfCompany++;
+	}
+	
+	private void empWageCompute() {
+		for(int index=0;index<numOfCompany;index++) {
+			companyEmpWageArray[index].setTotalEmpWage(this.empWageCompute(companyEmpWageArray[index]));
+			System.out.println(companyEmpWageArray[index]);
+		}
+	}
+	
+	private int empWageCompute(CompanyEmpWage companyEmpWage) {
 		int workingDays=0, totalEmpHours=0;
 		int employeeHours=0;
-		while(totalEmpHours <=maxHoursPerMonth && workingDays < noOfDays) {
+		while(totalEmpHours <=companyEmpWage.maxHoursPerMonth && workingDays < companyEmpWage.noOfDays) {
 			
 			double empCheck = Math.floor(Math.random()*10)%3;
 			switch((int)empCheck) {
@@ -39,24 +46,18 @@ public class EmployeeWageCompute {
 			workingDays++;
 			System.out.println("Day "+workingDays+": "+employeeHours+" hours");
 		}
-		int totalEmpWage=totalEmpHours*wagePerHour;
+		return totalEmpHours*companyEmpWage.wagePerHour;
 		
 	}
 	
-	@Override
-	public String toString() {
-		return "Total Employee Wage for Company "+companyName+" is "+totalEmpWage;
-	}
 	
 
 	public static void main(String[] args) {
 		
-		EmployeeWageCompute dmart=new EmployeeWageCompute("DMart", 20, 2, 20);
-		EmployeeWageCompute reliance=new EmployeeWageCompute("DMart", 40, 5, 20);
-		dmart.empWageCompute();
-		System.out.println(dmart);
-		reliance.empWageCompute();
-		System.out.println(reliance);
+		EmployeeWageCompute empWageBuilder=new EmployeeWageCompute();
+		empWageBuilder.addCompanyEmpWage("DMart",20, 2,10);
+		empWageBuilder.addCompanyEmpWage("Reliance",10, 5,20);
+		empWageBuilder.empWageCompute();
 	
 	}
 

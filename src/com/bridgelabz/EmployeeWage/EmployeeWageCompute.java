@@ -6,8 +6,21 @@ public class EmployeeWageCompute {
 	public static final int PARTTIME = 1;
 	public static final int FULL_TIME_HOURS = 8;
 	
-	public static void companyWageCompute(String companyName,int wagePerHour, int noOfDays, int maxHoursPerMonth) {
+	private final String companyName;
+	private final int wagePerHour;
+	private final int noOfDays;
+	private final int maxHoursPerMonth;
+	private int totalEmpWage;
+	
+	public EmployeeWageCompute(String companyName,int wagePerHour, int noOfDays, int maxHoursPerMonth) {
+		this.companyName=companyName;
+		this.wagePerHour=wagePerHour;
+		this.noOfDays=noOfDays;
+		this.maxHoursPerMonth=maxHoursPerMonth;
 		
+	}
+	
+	public void empWageCompute() {
 		int workingDays=0, totalEmpHours=0;
 		int employeeHours=0;
 		while(totalEmpHours <=maxHoursPerMonth && workingDays < noOfDays) {
@@ -28,13 +41,22 @@ public class EmployeeWageCompute {
 		}
 		int totalEmpWage=totalEmpHours*wagePerHour;
 		
-		System.out.println("Total Employee Wage for Company "+companyName+" is "+totalEmpWage);
-		
 	}
+	
+	@Override
+	public String toString() {
+		return "Total Employee Wage for Company "+companyName+" is "+totalEmpWage;
+	}
+	
+
 	public static void main(String[] args) {
 		
-		companyWageCompute("Bridgelabz",90, 10, 20);
-		companyWageCompute("Perfios",200, 10, 15);
+		EmployeeWageCompute dmart=new EmployeeWageCompute("DMart", 20, 2, 20);
+		EmployeeWageCompute reliance=new EmployeeWageCompute("DMart", 40, 5, 20);
+		dmart.empWageCompute();
+		System.out.println(dmart);
+		reliance.empWageCompute();
+		System.out.println(reliance);
 	
 	}
 
